@@ -204,7 +204,7 @@ function twoNumSum(numbers, target){
   for(let num of numbers){
     let potentialMatch = target - num;
     if(potentialMatch in hash){
-      console.log([potentialMatch* num])
+      // console.log([potentialMatch* num])
       return [potentialMatch, num]
     } else {
       hash[num] = true;
@@ -220,7 +220,7 @@ function twoNumberSum(array, targetSum) {
 	while (l < r){
 		const currentSum = array[l] + array[r];
 		if(currentSum === targetSum){
-      console.log(array[l], array[r])
+      // console.log(array[l], array[r])
 			return [array[l], array[r]];
 		} else if(currentSum < targetSum){
 			l++;
@@ -235,4 +235,28 @@ twoNumberSum(nums,2020)
 
 twoNumSum(nums, 2020)
 
-// console.log('hello world')
+function threeNumberSum(array, targetSum){
+  array.sort((a,b)=> a-b);
+  let trips = [];
+  for (let i = 0; i<array.length-2;i++){
+    let left = i+1
+    let right = array.length-1;
+    while(left<right){
+      let currentSum = array[i] + array[left] + array[right];
+      if(currentSum===targetSum){
+        trips.push([array[i], array[left], array[right]])
+        console.log(array[i]* array[left]* array[right])
+        left +=1;
+        right -=1;
+      }else if (currentSum < targetSum){
+        left+=1
+      }else if (currentSum > targetSum){
+        right-=1
+      } 
+    }
+  }
+
+  return trips;
+}
+
+threeNumberSum(nums, 2020)
